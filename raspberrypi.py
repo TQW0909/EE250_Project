@@ -57,7 +57,6 @@ while True:
             "temperature": temp,
             "humidity": humidity,
             "light_intensity": light_intensity,
-            "soil_moisture": soil_moisture
         })
 
         client.publish(MQTT_TOPIC_SENSOR, message)
