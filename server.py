@@ -92,7 +92,7 @@ def on_message(client, userdata, msg):
         print("Error handling message:", e)
 
 client = mqtt.Client()
-client.tls_set(ca_certs="../mosquitto.org.crt", tls_version=ssl.PROTOCOL_TLSv1_2)
+client.tls_set(ca_certs="mosquitto.org.crt", tls_version=ssl.PROTOCOL_TLSv1_2)
 client.on_message = on_message
 client.connect(MQTT_BROKER, MQTT_PORT, 60)
 client.subscribe(MQTT_TOPIC_SENSOR)
