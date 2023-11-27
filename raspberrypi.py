@@ -24,7 +24,7 @@ MQTT_TOPIC_CONTROL = "garden/control"
 
 # Setup MQTT client
 client = mqtt.Client()
-client.tls_set(ca_certs="EE250_Project/mosquitto.org.crt", tls_version=ssl.PROTOCOL_TLSv1_2)
+client.tls_set(ca_certs="../mosquitto.org.crt", tls_version=ssl.PROTOCOL_TLSv1_2)
 
 def on_connect(client, userdata, flags, rc):
     print("Connected with result code " + str(rc))
