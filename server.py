@@ -106,6 +106,14 @@ def index():
 def get_data():
     return json.dumps(app_data)
 
+@app.route('/water-garden', methods={'POST'})
+def water_garden():
+    command = {
+        "led" : "on"
+    }
+    client.publish(MQTT_TOPIC_CONTROL, json.dumps(command))
+    return json.dumps({"status" : "success"})
+
 if __name__ == '__main__':
 
     app.run(debug=False, host= '0.0.0.0', port=5555)

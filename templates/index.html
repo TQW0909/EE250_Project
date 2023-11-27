@@ -25,6 +25,9 @@
         <h2>Cloudiness</h2>
         <p id="cloudines"></p>
    </div>
+
+   <h1>Press Button to Water the Garden</h1>
+   <button id="water">Water Garden</button>
 </body>
 </html>
 
@@ -40,5 +43,15 @@
         });
         setTimeout(fetchData, 5000);
     }
+    document.getElementById('water').addEventListener('click', function(){
+        fetch('/water-garden', {method : 'POST'})
+        .then(response => {
+            if (response.ok){
+                console.log("Garden Successfuly watered.")
+            }
+        })
+        .catch(error => console.error(error));
+    });
+    
     fetchData();
 </script>
