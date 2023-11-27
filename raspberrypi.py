@@ -13,6 +13,7 @@ light_sensor = 0
 # Connect the LED to D2
 led = 2
 grovepi.pinMode(led, "OUTPUT")
+grovepi.digitalWrite(led, 0)  # LED on
 
 # MQTT settings
 MQTT_BROKER = "test.mosquitto.org"
@@ -30,12 +31,13 @@ def on_connect(client, userdata, flags, rc):
 def on_message(client, userdata, msg):
     try:
         payload = json.loads(msg.payload.decode())
+        print(payload)
         if msg.topic == MQTT_TOPIC_CONTROL:
             # Check the control message 
             led_status = payload.get("led")
             if led_status == "on":
                 grovepi.digitalWrite(led, 1)  # LED on
-            elif led_status == "off":
+                time.sleep(5)
                 grovepi.digitalWrite(led, 0)  # LED off
     except Exception as e:
         print("Error handling message:", e)
@@ -58,6 +60,8 @@ while True:
             "humidity": humidity,
             "light_intensity": light_intensity,
         })
+
+        print(message)
 
         client.publish(MQTT_TOPIC_SENSOR, message)
 
