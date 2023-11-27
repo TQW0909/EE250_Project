@@ -8,6 +8,7 @@ import requests
 import json
 import time
 import paho.mqtt.client as mqtt
+import ssl
 
 app = Flask('Garden Monitor Server')
 
@@ -15,7 +16,7 @@ OWM_API_KEY = '62d326640bcae67b9575cc115e7ec392' # OpenWeatherMap API Key
 DEFAULT_ZIP = 90089
 
 MQTT_BROKER = "test.mosquitto.org"
-MQTT_PORT = 1883
+MQTT_PORT = 8883
 MQTT_TOPIC_SENSOR = "garden/sensorData"
 MQTT_TOPIC_CONTROL = "garden/control"
 
@@ -91,7 +92,7 @@ def on_message(client, userdata, msg):
         print("Error handling message:", e)
 
 client = mqtt.Client()
-# client.on_connect = on_connect
+client.tls_set(ca_certs="EE250_Project/mosquitto.org.crt", tls_version=ssl.PROTOCOL_TLSv1_2)
 client.on_message = on_message
 client.connect(MQTT_BROKER, MQTT_PORT, 60)
 client.subscribe(MQTT_TOPIC_SENSOR)

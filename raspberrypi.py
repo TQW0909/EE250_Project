@@ -2,6 +2,7 @@ import time
 import grovepi
 import paho.mqtt.client as mqtt
 import json
+import ssl
 
 # sensor setup
 # Connect Temp & Hum Sensor to D4
@@ -17,12 +18,13 @@ grovepi.digitalWrite(led, 0)  # LED on
 
 # MQTT settings
 MQTT_BROKER = "test.mosquitto.org"
-MQTT_PORT = 1883
+MQTT_PORT = 8883
 MQTT_TOPIC_SENSOR = "garden/sensorData"
 MQTT_TOPIC_CONTROL = "garden/control"
 
 # Setup MQTT client
 client = mqtt.Client()
+client.tls_set(ca_certs="EE250_Project/mosquitto.org.crt", tls_version=ssl.PROTOCOL_TLSv1_2)
 
 def on_connect(client, userdata, flags, rc):
     print("Connected with result code " + str(rc))
