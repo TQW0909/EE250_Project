@@ -15,7 +15,7 @@ led = 2
 grovepi.pinMode(led, "OUTPUT")
 
 # MQTT settings
-MQTT_BROKER = "MQTT_BROKER_ADDRESS"
+MQTT_BROKER = "test.mosquitto.org"
 MQTT_PORT = 1883
 MQTT_TOPIC_SENSOR = "garden/sensorData"
 MQTT_TOPIC_CONTROL = "garden/control"

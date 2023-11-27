@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Remote Garden Monitor</title>
+</head>
+<body>
+    <h1>Garden Data From Sensors</h1>
+   <div>
+        <h2>Temperature</h2>
+        <p id="temperature"></p>
+
+        <h2>Humidity</h2>
+        <p id="humidity"></p>
+
+        <h2>Light Intensity</h2>
+        <p id="light"></p>
+   </div>
+
+   <h1>Weather Data From API</h1>
+   <div>
+        <h2>Current Weather</h2>
+        <p id="weather"></p>
+
+        <h2>Cloudiness</h2>
+        <p id="cloudines"></p>
+   </div>
+</body>
+</html>
+
+<script>
+    function fetchData() {
+        fetch('/get-data')
+        .then(response => response.json())
+        .then(data => {
+            for (let x in data)
+            {
+                document.getElementsById(x).innerText = data[x];
+            }
+        });
+        setTimeout(fetchData, 5000);
+    }
+    fetchData();
+</script>
