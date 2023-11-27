@@ -1,4 +1,3 @@
-from http.client import PAYMENT_REQUIRED
 import threading
 from flask import Flask
 from flask import render_template
@@ -104,6 +103,7 @@ def index():
 
 @app.route('/get-data')
 def get_data():
+    print(app_data)
     return json.dumps(app_data)
 
 @app.route('/water-garden', methods={'POST'})

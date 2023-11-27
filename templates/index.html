@@ -7,7 +7,7 @@
 <body>
     <h1>Garden Data From Sensors</h1>
    <div>
-        <h2>Temperature</h2>
+        <h2>Temperature (Celsius)</h2>
         <p id="temperature"></p>
 
         <h2>Humidity</h2>
@@ -22,8 +22,8 @@
         <h2>Current Weather</h2>
         <p id="weather"></p>
 
-        <h2>Cloudiness</h2>
-        <p id="cloudines"></p>
+        <h2>Cloudiness (%)</h2>
+        <p id="cloudiness"></p>
    </div>
 
    <h1>Press Button to Water the Garden</h1>
@@ -38,7 +38,7 @@
         .then(data => {
             for (let x in data)
             {
-                document.getElementsById(x).innerText = data[x];
+                document.getElementById(x).innerText = data[x];
             }
         });
         setTimeout(fetchData, 5000);
@@ -52,6 +52,6 @@
         })
         .catch(error => console.error(error));
     });
-    
+
     fetchData();
 </script>
