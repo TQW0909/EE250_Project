@@ -32,6 +32,7 @@
 </html>
 
 <script>
+    // Function for periodically and dynamically updating data on webpage using AJAX
     function fetchData() {
         fetch('/get-data')
         .then(response => response.json())
@@ -43,6 +44,8 @@
         });
         setTimeout(fetchData, 5000);
     }
+
+    // Handling for when "Water-graden" button is pressed
     document.getElementById('water').addEventListener('click', function(){
         fetch('/water-garden', {method : 'POST'})
         .then(response => {
